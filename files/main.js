@@ -1,84 +1,7 @@
-/* Zonghao Guo — homepage interactions: tabbed sections and publication filtering. */
+/* Zonghao Guo — homepage interactions: publication filtering and search. */
 (function () {
   'use strict';
 
-  /* ------------------------------- tabs ---------------------------------- */
-  var tablist = document.getElementById('tabs');
-  var tabs = tablist ? Array.prototype.slice.call(tablist.querySelectorAll('.tab')) : [];
-
-  function panelOf(tab) {
-    return document.getElementById(tab.getAttribute('aria-controls'));
-  }
-
-  /* Position in the document flow. getBoundingClientRect() is unusable here
-     because the tab bar is sticky and reports 0 once it is pinned. */
-  function documentTop(el) {
-    var y = 0;
-    while (el) {
-      y += el.offsetTop;
-      el = el.offsetParent;
-    }
-    return y;
-  }
-
-  function activate(name, opts) {
-    opts = opts || {};
-    var target = null;
-
-    tabs.forEach(function (tab) {
-      var isTarget = tab.dataset.tab === name;
-      var panel = panelOf(tab);
-      tab.setAttribute('aria-selected', isTarget ? 'true' : 'false');
-      tab.tabIndex = isTarget ? 0 : -1;
-      if (panel) panel.hidden = !isTarget;
-      if (isTarget) target = tab;
-    });
-
-    if (!target) return false;
-    if (opts.focus) target.focus();
-    if (opts.scroll) {
-      // start the new panel from its beginning, keeping the tab bar pinned on top
-      var bar = document.querySelector('.tabs-bar');
-      var top = bar ? documentTop(bar) : 0;
-      if (window.pageYOffset > top) window.scrollTo({ top: top, behavior: 'smooth' });
-    }
-    if (opts.hash !== false && history.replaceState) {
-      history.replaceState(null, '', '#' + name);
-    }
-    return true;
-  }
-
-  tabs.forEach(function (tab) {
-    tab.addEventListener('click', function () {
-      activate(tab.dataset.tab, { scroll: true });
-    });
-  });
-
-  if (tablist) {
-    tablist.addEventListener('keydown', function (e) {
-      var current = tabs.indexOf(document.activeElement);
-      if (current === -1) return;
-      var next = null;
-
-      if (e.key === 'ArrowRight') next = (current + 1) % tabs.length;
-      else if (e.key === 'ArrowLeft') next = (current - 1 + tabs.length) % tabs.length;
-      else if (e.key === 'Home') next = 0;
-      else if (e.key === 'End') next = tabs.length - 1;
-      else return;
-
-      e.preventDefault();
-      activate(tabs[next].dataset.tab, { focus: true });
-    });
-  }
-
-  function fromHash() {
-    var name = (location.hash || '').replace('#', '');
-    if (name) activate(name, { hash: false });
-  }
-  window.addEventListener('hashchange', fromHash);
-  fromHash();
-
-  /* --------------------------- publications ------------------------------ */
   var list = document.getElementById('pubList');
   var filters = document.getElementById('pubFilters');
   var search = document.getElementById('pubSearch');
@@ -110,8 +33,8 @@
       if (empty) empty.hidden = shown !== 0;
       if (status) {
         status.textContent = shown === total
-          ? 'Showing all ' + total + ' publications.'
-          : 'Showing ' + shown + ' of ' + total + ' publications.';
+          ? 'Showing all ' + total + ' selected publications.'
+          : 'Showing ' + shown + ' of ' + total + ' selected publications.';
       }
     }
 
@@ -134,7 +57,64 @@
     }
   }
 
-  /* ------------------------------ footer --------------------------------- */
   var year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
+
+  /* ------------------- live GitHub stars / HF downloads ------------------- */
+  /* Counts are cached in localStorage so a reload does not spend the
+     unauthenticated GitHub rate limit (60 requests per hour per IP). */
+  var CACHE_MS = 6 * 60 * 60 * 1000;
+
+  function cached(key, fetcher, render) {
+    var hit = null;
+    try {
+      hit = JSON.parse(localStorage.getItem(key));
+    } catch (e) { /* private mode or corrupt entry */ }
+
+    if (hit && typeof hit.v === 'number' && Date.now() - hit.t < CACHE_MS) {
+      render(hit.v);
+      return;
+    }
+
+    fetcher().then(function (value) {
+      if (typeof value !== 'number' || isNaN(value)) return;
+      try {
+        localStorage.setItem(key, JSON.stringify({ v: value, t: Date.now() }));
+      } catch (e) { /* storage full or unavailable */ }
+      render(value);
+    }).catch(function () { /* offline or rate limited: leave the chip hidden */ });
+  }
+
+  function compact(n) {
+    if (n >= 10000) return (n / 1000).toFixed(0) + 'k';
+    if (n >= 1000) return (n / 1000).toFixed(1) + 'k';
+    return String(n);
+  }
+
+  function show(el, label, value) {
+    el.innerHTML = label + ' <b>' + compact(value) + '</b>';
+    el.hidden = false;
+  }
+
+  document.querySelectorAll('[data-gh]').forEach(function (el) {
+    var repo = el.dataset.gh;
+    cached('gh:' + repo, function () {
+      return fetch('https://api.github.com/repos/' + repo)
+        .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+        .then(function (d) { return d.stargazers_count; });
+    }, function (v) {
+      show(el, 'GitHub stars', v);
+    });
+  });
+
+  document.querySelectorAll('[data-hf]').forEach(function (el) {
+    var model = el.dataset.hf;
+    cached('hf:' + model, function () {
+      return fetch('https://huggingface.co/api/models/' + model)
+        .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+        .then(function (d) { return d.downloads; });
+    }, function (v) {
+      show(el, 'HF downloads', v);
+    });
+  });
 })();
