@@ -20,8 +20,8 @@
   --bg-alt: #fafafa;
 
   /* Everything is sized in rem, so --base scales the whole page at once. */
-  --base: 32px;
-  --sidebar-w: 420px;
+  --base: 22px;
+  --sidebar-w: 340px;
   --font: -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI",
           "Helvetica Neue", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
 }
@@ -67,20 +67,20 @@ a:hover { color: var(--link-hover); text-decoration: underline; }
 
 /* -------------------------------- layout --------------------------------- */
 .layout {
-  max-width: 1660px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 40px 30px 0;
+  padding: 38px 28px 0;
   display: grid;
   grid-template-columns: var(--sidebar-w) minmax(0, 1fr);
-  gap: 56px;
+  gap: 48px;
   align-items: start;
 }
 
 /* -------------------------------- sidebar -------------------------------- */
-.sidebar { position: sticky; top: 30px; }
+.sidebar { position: sticky; top: 28px; }
 
 .avatar {
-  width: 260px; height: 260px;
+  width: 210px; height: 210px;
   margin-bottom: 18px;
   border-radius: 50%;
   overflow: hidden;
@@ -130,12 +130,9 @@ a:hover { color: var(--link-hover); text-decoration: underline; }
 .section * + h2 { margin-top: 2.2em; }
 .section h3 { font-size: 1.06rem; }
 
-.glance {
-  padding: 12px 16px;
-  border-left: 3px solid var(--line-strong);
-  background: var(--bg-alt);
-  color: var(--ink-dim); font-size: .9rem;
-}
+/* body copy is justified on both edges; short lines such as publication
+   metadata stay left-aligned, where justification would look stretched */
+.section > p, .bullets li, .cv-body p { text-align: justify; }
 
 .bullets li {
   position: relative;
@@ -146,22 +143,6 @@ a:hover { color: var(--link-hover); text-decoration: underline; }
   width: 5px; height: 5px; border-radius: 50%; background: var(--ink-dim);
 }
 .awards li { color: var(--ink); }
-
-/* ------------------------------- research -------------------------------- */
-.topics { margin-top: 4px; }
-.topic { padding: 18px 0; border-top: 1px solid var(--line); }
-.topic:first-child { border-top: 0; padding-top: 0; }
-.topic h3 { margin: 0 0 6px; }
-.topic p { margin: 0; font-size: .96rem; }
-.topic-refs { margin-top: 6px !important; color: var(--ink-dim); font-size: .86rem; }
-
-.research-cta {
-  margin-top: 1.4em;
-  padding: 12px 16px;
-  border-left: 3px solid var(--line-strong);
-  background: var(--bg-alt);
-  font-size: .94rem;
-}
 
 /* ----------------------------- publications ------------------------------ */
 .pub-toolbar {
@@ -182,7 +163,7 @@ a:hover { color: var(--link-hover); text-decoration: underline; }
 
 .search { margin-left: auto; }
 .search input {
-  width: 380px; max-width: 100%;
+  width: 300px; max-width: 100%;
   padding: 6px 12px;
   border: 1px solid var(--line-strong); border-radius: 3px;
   background: #fff; color: var(--ink);
@@ -194,8 +175,8 @@ a:hover { color: var(--link-hover); text-decoration: underline; }
 .filter-status { margin: 0 0 1.6em; color: var(--ink-dim); font-size: .85rem; }
 
 .pub {
-  display: grid; grid-template-columns: 300px minmax(0, 1fr);
-  gap: 26px; align-items: start;
+  display: grid; grid-template-columns: 240px minmax(0, 1fr);
+  gap: 24px; align-items: start;
   padding: 20px 0;
   border-top: 1px solid var(--line);
 }
@@ -225,36 +206,56 @@ a:hover { color: var(--link-hover); text-decoration: underline; }
   color: var(--ink-dim); font-size: .78rem; font-weight: 600;
 }
 .chip b { color: var(--ink-strong); font-weight: 700; }
+.chip-ico { width: 1em; height: 1em; fill: currentColor; vertical-align: -.14em; }
+.chip-emoji { font-size: 1em; line-height: 1; }
 
 .pub-body { min-width: 0; }
 .pub-title { font-size: 1.04rem; font-weight: 700; margin: -2px 0 4px; }
 .pub-venue {
-  margin: 0 0 4px;
-  color: var(--venue); font-size: .9rem; font-weight: 700;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 4px 9px;
+  margin: 0 0 5px;
 }
-.venue-note {
-  margin-left: 8px;
-  color: var(--ink-dim); font-size: .84rem; font-weight: 500;
+.pub-venue .venue { color: var(--venue); font-size: .9rem; font-weight: 700; }
+.venue-note { color: var(--ink-dim); font-size: .84rem; font-weight: 500; }
+
+/* authorship role, the first thing a reviewer looks for */
+.role {
+  padding: 1px 9px;
+  border: 1px solid; border-radius: 3px;
+  font-size: .78rem; font-weight: 700; white-space: nowrap;
 }
+.role.is-first { border-color: #b9d4bd; background: #eef7ef; color: #1f6b39; }
+.role.is-corr { border-color: #c3d2ea; background: #eef3fb; color: #1a4f8a; }
+.role.is-other { border-color: var(--line-strong); background: var(--bg-alt); color: var(--ink-dim); }
+
+/* paper-level distinctions: best paper candidate, influential paper lists */
+.honor {
+  padding: 1px 9px;
+  border: 1px solid #e3c98f; border-radius: 3px;
+  background: #fdf6e6; color: #8a5a12;
+  font-size: .78rem; font-weight: 700; white-space: nowrap;
+}
+a.honor:hover { background: #fbeecd; color: #6f460b; text-decoration: none; }
 .pub-authors { margin: 0 0 4px; font-size: .93rem; }
 .pub-note { margin: 0; color: var(--ink-dim); font-size: .91rem; }
 
 .pub-links { display: flex; flex-wrap: wrap; gap: 7px; margin: 11px 0 0; }
 .btn {
-  display: inline-block;
+  display: inline-flex; align-items: center; gap: 5px;
   padding: 4px 15px;
   border-radius: 3px;
   background: var(--btn); color: #fff;
   font-size: .84rem; font-weight: 600;
 }
+.btn .chip-ico { width: .95em; height: .95em; }
 .btn:hover { background: var(--btn-hover); color: #fff; text-decoration: none; }
 
 .pub-empty { color: var(--ink-dim); }
 
 /* ------------------------------- experience ------------------------------ */
 .cv-list li {
-  display: grid; grid-template-columns: 230px minmax(0, 1fr);
-  gap: 26px;
+  display: grid; grid-template-columns: 180px minmax(0, 1fr);
+  gap: 24px;
   padding: 16px 0;
   border-top: 1px solid var(--line);
 }
@@ -271,13 +272,13 @@ a:hover { color: var(--link-hover); text-decoration: underline; }
 .page-footer p { margin: 0; color: var(--ink-dim); font-size: .84rem; }
 
 /* ------------------------------- responsive ------------------------------ */
-@media (max-width: 1500px) {
-  :root { --base: 27px; --sidebar-w: 360px; }
-  .pub { grid-template-columns: 260px minmax(0, 1fr); }
+@media (max-width: 1240px) {
+  :root { --base: 20px; --sidebar-w: 300px; }
+  .pub { grid-template-columns: 210px minmax(0, 1fr); }
 }
 
-@media (max-width: 1180px) {
-  :root { --base: 24px; }
+@media (max-width: 1000px) {
+  :root { --base: 19px; }
   .layout {
     grid-template-columns: 1fr;
     gap: 34px;
@@ -297,9 +298,9 @@ a:hover { color: var(--link-hover); text-decoration: underline; }
 }
 
 @media (max-width: 780px) {
-  :root { --base: 21px; }
+  :root { --base: 18px; }
   .sidebar-inner { grid-template-columns: 1fr; }
-  .avatar { width: 160px; height: 160px; grid-row: auto; }
+  .avatar { width: 150px; height: 150px; grid-row: auto; }
   .author-name, .author-name-cn, .author-bio, .author-links { grid-column: 1; }
   .pub { grid-template-columns: 1fr; gap: 14px; }
   .pub-thumb { max-width: 420px; }
@@ -309,7 +310,7 @@ a:hover { color: var(--link-hover); text-decoration: underline; }
 }
 
 @media (max-width: 480px) {
-  :root { --base: 19px; }
+  :root { --base: 17px; }
   .layout { padding: 22px 18px 0; }
 }
 
@@ -326,7 +327,7 @@ a:hover { color: var(--link-hover); text-decoration: underline; }
   .avatar { width: 150px; height: 150px; }
   .pub { grid-template-columns: 150px minmax(0, 1fr); }
   .section h2 { margin-top: 20pt; break-after: avoid; }
-  .pub, .topic, .cv-list li { break-inside: avoid; }
+  .pub, .cv-list li { break-inside: avoid; }
   a { color: var(--ink-strong); }
   .btn { background: none; color: var(--ink-strong); padding: 0; }
   .btn::after { content: ""; }
