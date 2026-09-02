@@ -1,0 +1,170 @@
+{
+ "name": "Zonghao Guo",
+ "citedby": 3150,
+ "citedby5y": 3146,
+ "hindex": 17,
+ "i10index": 20,
+ "publications": {
+  "h1I6LJcAAAAJ:UeHWp8X0CEIC": {
+   "title": "Conformer: Local features coupling global representations for recognition and detection",
+   "year": "2023",
+   "citations": 1378
+  },
+  "h1I6LJcAAAAJ:UebtZRa9Y70C": {
+   "title": "Video-r1: Reinforcing video reasoning in mllms",
+   "year": "2026",
+   "citations": 491
+  },
+  "h1I6LJcAAAAJ:2osOgNQ5qMEC": {
+   "title": "Beyond bounding-box: Convex-hull feature adaptation for oriented and densely packed object detection",
+   "year": "2021",
+   "citations": 382
+  },
+  "h1I6LJcAAAAJ:YsMSGLbcyi4C": {
+   "title": "Llava-uhd: an lmm perceiving any aspect ratio and high-resolution images",
+   "year": "2024",
+   "citations": 293
+  },
+  "h1I6LJcAAAAJ:ULOm3_A8WrAC": {
+   "title": "Minicpm-v 4.5: Cooking efficient mllms via architecture, data, and training recipe",
+   "year": "2026",
+   "citations": 121
+  },
+  "h1I6LJcAAAAJ:5nxA0vEk-isC": {
+   "title": "Xlrs-bench: Could your multimodal llms understand extremely large ultra-high-resolution remote sensing imagery?",
+   "year": "2025",
+   "citations": 73
+  },
+  "h1I6LJcAAAAJ:9yKSN-GCB0IC": {
+   "title": "Bidirectional feature globalization for few-shot semantic segmentation of 3d point cloud scenes",
+   "year": "2022",
+   "citations": 69
+  },
+  "h1I6LJcAAAAJ:qjMakFHDy7sC": {
+   "title": "Integrally migrating pre-trained transformer encoder-decoders for visual object detection",
+   "year": "2023",
+   "citations": 52
+  },
+  "h1I6LJcAAAAJ:MXK_kJrjxJIC": {
+   "title": "Geollava-8k: Scaling remote-sensing multimodal large language models to 8k resolution",
+   "year": "2026",
+   "citations": 39
+  },
+  "h1I6LJcAAAAJ:4DMP91E08xMC": {
+   "title": "LLaVA-UHD v2: Exploiting Hierarchical Vision Granularity in MLLMs via Inverse Semantic Pyramid",
+   "year": "2026",
+   "citations": 31
+  },
+  "h1I6LJcAAAAJ:LkGwnXOMwfcC": {
+   "title": "Migician: Revealing the magic of free-form multi-image grounding in multimodal large language models",
+   "year": "2025",
+   "citations": 31
+  },
+  "h1I6LJcAAAAJ:WF5omc3nYNoC": {
+   "title": "Controlcap: Controllable region-level captioning",
+   "year": "2024",
+   "citations": 28
+  },
+  "h1I6LJcAAAAJ:0EnyYjriUFMC": {
+   "title": "Deepperception: Advancing r1-like cognitive visual perception in mllms for knowledge-intensive visual grounding",
+   "year": "2025",
+   "citations": 26
+  },
+  "h1I6LJcAAAAJ:KlAtU1dfN6UC": {
+   "title": "Harnessing massive satellite imagery with efficient masked image modeling",
+   "year": "2025",
+   "citations": 23
+  },
+  "h1I6LJcAAAAJ:Se3iqnhoufwC": {
+   "title": "Scaling efficient masked autoencoder learning on large remote sensing dataset",
+   "year": "2024",
+   "citations": 19
+  },
+  "h1I6LJcAAAAJ:IjCSPb-OGe4C": {
+   "title": "Attentionshift: Iteratively estimated part-based attention map for pointly supervised instance segmentation",
+   "year": "2023",
+   "citations": 19
+  },
+  "h1I6LJcAAAAJ:u5HHmVD_uO8C": {
+   "title": "Semantic segmentation for point cloud scenes via dilated graph feature aggregation and pyramid decoders",
+   "year": "2022",
+   "citations": 17
+  },
+  "h1I6LJcAAAAJ:d1gkVwhDpl0C": {
+   "title": "Long-tailed distribution adaptation",
+   "year": "2021",
+   "citations": 13
+  },
+  "h1I6LJcAAAAJ:qxL8FJ1GzNcC": {
+   "title": "Mm-uavbench: How well do multimodal large language models see, think, and plan in low-altitude uav scenarios?",
+   "year": "2025",
+   "citations": 10
+  },
+  "h1I6LJcAAAAJ:aqlVkmm33-oC": {
+   "title": "Exploration for Building Next-Generation Foundation MLLMs via Self-Learning",
+   "year": null,
+   "citations": 10
+  },
+  "h1I6LJcAAAAJ:9ZlFYXVOiuMC": {
+   "title": "Emind: A foundation model for multi-task electromagnetic signals understanding",
+   "year": "2025",
+   "citations": 6
+  },
+  "h1I6LJcAAAAJ:M3ejUd6NZC8C": {
+   "title": "Geovis: Geospatially rewarded visual search for remote sensing visual grounding",
+   "year": "2026",
+   "citations": 5
+  },
+  "h1I6LJcAAAAJ:_FxGoFyzp5QC": {
+   "title": "Hierarchical attentionshift for pointly supervised instance segmentation",
+   "year": "2025",
+   "citations": 4
+  },
+  "h1I6LJcAAAAJ:4TOpqqG69KYC": {
+   "title": "Llava-uhd v3: Progressive visual compression for efficient native-resolution encoding in mllms",
+   "year": "2025",
+   "citations": 3
+  },
+  "h1I6LJcAAAAJ:kNdYIx-mwKoC": {
+   "title": "Discriminatively Matched Part Tokens for Pointly Supervised Instance Segmentation",
+   "year": "2025",
+   "citations": 3
+  },
+  "h1I6LJcAAAAJ:Wp0gIr-vW9MC": {
+   "title": "Cheers: Decoupling Patch Details from Semantic Representations Enables Unified Multimodal Comprehension and Generation",
+   "year": "2026",
+   "citations": 2
+  },
+  "h1I6LJcAAAAJ:QIV2ME_5wuYC": {
+   "title": "MERLIN: Building Low-SNR Robust Multimodal LLMs for Electromagnetic Signals",
+   "year": "2026",
+   "citations": 1
+  },
+  "h1I6LJcAAAAJ:ZeXyd9-uunAC": {
+   "title": "Karl: Knowledge-aware reasoning and reinforcement learning for knowledge-intensive visual grounding",
+   "year": "2025",
+   "citations": 1
+  },
+  "h1I6LJcAAAAJ:7PzlFSSx8tAC": {
+   "title": "EchoMLLM: Incentivizing Echocardiographic Video Understanding with Keyframe Grounding and Report Generation",
+   "year": "2026",
+   "citations": 0
+  },
+  "h1I6LJcAAAAJ:dhFuZR0502QC": {
+   "title": "RSMeM: Knowledge-Enhanced Memory Evolution for Remote Sensing Agents with Systematic Evaluation",
+   "year": "2026",
+   "citations": 0
+  },
+  "h1I6LJcAAAAJ:L8Ckcad2t8MC": {
+   "title": "AirGroundBench: Probing Spatial Intelligence in Multimodal Large Models under Heterogeneous Multi-View Embodied Collaboration",
+   "year": "2026",
+   "citations": 0
+  },
+  "h1I6LJcAAAAJ:mVmsd5A6BfQC": {
+   "title": "FlexiVideo: Variation-Aware Temporal Dynamics Modeling for Efficient Video Understanding",
+   "year": "2026",
+   "citations": 0
+  }
+ },
+ "updated": "2026-09-02T22:30:21+00:00"
+}
